@@ -1,0 +1,80 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-styles/paper-styles.html"/>
+
+<!--
+'sw4p-header' is a container with slots for menu and nav bars
+
+Example:
+    <sw4p-header>
+        <a slot="title" href="https://sw4pspace.com">Sw4pSpace</a>
+        <div slot="menu">
+            <button style="height: 64px; margin: 0;">Home</button>
+            <button style="height: 64px; margin: 0;">Team</button>
+        </div>
+    </sw4p-header>
+
+Styling:
+'--sw4p-header-background-color' | Header background color | black
+'--sw4p-header-title-color'      | Title text color        | white
+
+@group Sw4p Elements
+@element sw4p-header
+@demo demo/index.html
+-->
+
+<dom-module id="sw4p-header">
+
+    <template>
+
+        <style>
+            :host {
+                font-family: 'Roboto', sans-serif;
+
+            }
+            .headerContainer {
+                display: flex;
+                justify-content: space-between;
+                padding-bottom: 0;
+                align-items: center;
+                height: 64px;
+                margin: 0;
+                width: 100%;
+                background-color: var(--sw4p-header-background-color, black);
+            }
+            .headerContainer > .title {
+                margin: 0 0 0 16px;
+                font-size: 24px;
+                color: var(--sw4p-header-title-color, white);
+                text-decoration: none;
+            }
+            .headerContainer > .menu {
+                display: flex !important;
+                flex-direction: row;
+                justify-content: flex-end;
+            }
+        </style>
+
+        <div class="headerContainer">
+            <div class="title">
+                <slot name="title"></slot>
+            </div>
+            <div class="menu">
+                <slot name="menu"></slot>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        class Sw4pHeader extends Polymer.Element {
+            static get is() {
+                return 'sw4p-header';
+            }
+            constructor() {
+                super();
+            }
+        }
+        customElements.define(Sw4pHeader.is, Sw4pHeader);
+    </script>
+
+</dom-module>
+
